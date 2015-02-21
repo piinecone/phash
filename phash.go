@@ -23,7 +23,7 @@ void cimg_exception_mode_quiet();
 
 typedef unsigned long long ulong64;
 
-extern int ph_dct_imagehash_wrapper(const char* file,ulong64 *hash);
+extern ulong64 ph_dct_imagehash_wrapper(const char* file);
 extern int ph_hamming_distance(const ulong64 hash1,const ulong64 hash2);
 
 */
@@ -38,12 +38,8 @@ func init() {
 func ImageHashDCT(fn string) (uint64, error) {
 	cfn := C.CString(fn)
 	defer C.free(unsafe.Pointer(cfn))
-	var hash C.ulong64
-	_, err := C.ph_dct_imagehash_wrapper(cfn, &hash)
-	if err != nil {
-		return 0, err
-	}
-	return uint64(hash), nil
+	hash, err := C.ph_dct_imagehash_wrapper(cfn)
+	return uint64(hash), err
 }
 
 // HammingDistance returns the hamming distance between the two perceptual hashes.
