@@ -23,8 +23,8 @@ void cimg_exception_mode_quiet();
 
 typedef unsigned long long ulong64;
 
-extern ulong64 ph_dct_imagehash_wrapper(const char* file);
-extern int ph_hamming_distance(const ulong64 hash1,const ulong64 hash2);
+ulong64 ph_dct_imagehash_wrapper(const char* file);
+int ph_hamming_distance(const ulong64 hash1,const ulong64 hash2);
 
 */
 import "C"
