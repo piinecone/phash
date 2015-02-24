@@ -11,7 +11,7 @@
 // You should have received a copy of the GNU General Public License along
 // with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-// Package phash is a simple pHash wrapper library for the Go programming language.
+// Package phash is a simple wrapper around the pHash library.
 package phash
 
 /*
