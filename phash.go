@@ -44,5 +44,20 @@ func ImageHashDCT(fn string) (uint64, error) {
 
 // HammingDistance returns the Hamming distance between the two perceptual hashes.
 func HammingDistance(h1, h2 uint64) int {
+	const (
+		m1  = 0x5555555555555555
+		m2  = 0x3333333333333333
+		h01 = 0x0101010101010101
+		m4  = 0x0f0f0f0f0f0f0f0f
+	)
+	x := h1 ^ h2
+	x -= (x >> 1) & m1
+	x = (x & m2) + ((x >> 2) & m2)
+	x = (x + (x >> 4)) & m4
+	return int((x * h01) >> 56)
+}
+
+// for benchmarks
+func hammingDistanceC(h1, h2 uint64) int {
 	return int(C.ph_hamming_distance(C.ulong64(h1), C.ulong64(h2)))
 }
