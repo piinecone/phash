@@ -16,6 +16,7 @@ var dctTestData = []struct {
 	{"testdata/jpg/gopher-flop.jpg", 17752165113623953620},
 	{"testdata/jpg/gopher-shave.jpg", 11459704921468884741},
 	{"testdata/png/gopher.png", 10631249863007147461},
+	{"testdata/png/navalny.png", 7471994969771757134},
 }
 
 var hammingTestData = []struct {
