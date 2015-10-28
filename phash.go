@@ -26,9 +26,14 @@ typedef unsigned long long ulong64;
 ulong64 ph_dct_imagehash_wrapper(const char* file);
 int ph_hamming_distance(const ulong64 hash1,const ulong64 hash2);
 
+ulong64* ph_dct_videohash_wrapper(const char *filename, int *l);
+
 */
 import "C"
-import "unsafe"
+import (
+	"reflect"
+	"unsafe"
+)
 
 func init() {
 	C.cimg_exception_mode_quiet()
@@ -40,6 +45,28 @@ func ImageHashDCT(fn string) (uint64, error) {
 	defer C.free(unsafe.Pointer(cfn))
 	hash, err := C.ph_dct_imagehash_wrapper(cfn)
 	return uint64(hash), err
+}
+
+func VideoHash(fn string) ([]C.ulong64, error) {
+	cfn := C.CString(fn)
+	var l int
+
+	defer C.free(unsafe.Pointer(cfn))
+
+	array, err := C.ph_dct_videohash_wrapper(cfn, (*C.int)(unsafe.Pointer(&l)))
+	if err != nil {
+		return nil, err
+	}
+
+	length := l
+	hdr := reflect.SliceHeader{
+		Data: uintptr(unsafe.Pointer(array)),
+		Len:  length,
+		Cap:  length,
+	}
+	goSlice := *(*[]C.ulong64)(unsafe.Pointer(&hdr))
+
+	return goSlice, err
 }
 
 // HammingDistance returns the Hamming distance between the two perceptual hashes.
