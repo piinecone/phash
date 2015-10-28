@@ -18,6 +18,11 @@ ph_dct_imagehash_wrapper(const char *file) {
 	return hash;
 }
 
+ulong64* ph_dct_videohash_wrapper(const char *filename, int *l){
+	int &ll = *l;
+	return ph_dct_videohash(filename, ll);
+}
+
 // Magic; without it pHash fails to compute hashes for some PNG files (compiler or linker issue?)
 void
 magic() {
@@ -29,4 +34,3 @@ magic() {
 #ifdef __cplusplus
 }
 #endif
-
