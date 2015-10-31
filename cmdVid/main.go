@@ -4,15 +4,14 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/dahernan/phash"
+	"github.com/opennota/phash"
 )
 
 func main() {
-
 	h1, err := phash.VideoHash(os.Args[1])
 	if err != nil {
 		fmt.Println(err)
-		return
+		os.Exit(1)
 	}
 	fmt.Println("h1: ", h1)
 }

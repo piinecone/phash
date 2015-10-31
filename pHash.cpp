@@ -18,9 +18,9 @@ ph_dct_imagehash_wrapper(const char *file) {
 	return hash;
 }
 
-ulong64* ph_dct_videohash_wrapper(const char *filename, int *l){
-	int &ll = *l;
-	return ph_dct_videohash(filename, ll);
+ulong64*
+ph_dct_videohash_wrapper(const char *filename, int *length){
+	return ph_dct_videohash(filename, *length);
 }
 
 // Magic; without it pHash fails to compute hashes for some PNG files (compiler or linker issue?)

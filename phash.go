@@ -49,20 +49,18 @@ func ImageHashDCT(fn string) (uint64, error) {
 
 func VideoHash(fn string) ([]C.ulong64, error) {
 	cfn := C.CString(fn)
-	var l int
-
 	defer C.free(unsafe.Pointer(cfn))
 
-	array, err := C.ph_dct_videohash_wrapper(cfn, (*C.int)(unsafe.Pointer(&l)))
+	var length C.int
+	array, err := C.ph_dct_videohash_wrapper(cfn, &length)
 	if err != nil {
 		return nil, err
 	}
 
-	length := l
 	hdr := reflect.SliceHeader{
 		Data: uintptr(unsafe.Pointer(array)),
-		Len:  length,
-		Cap:  length,
+		Len:  int(length),
+		Cap:  int(length),
 	}
 	goSlice := *(*[]C.ulong64)(unsafe.Pointer(&hdr))
 
