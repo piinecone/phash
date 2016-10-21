@@ -1,4 +1,5 @@
-#include <pHash.h>
+#include "c++/pHash/cimgffmpeg.cpp"
+#include "c++/pHash/pHash.cpp"
 
 #ifdef __cplusplus
 extern "C" {
