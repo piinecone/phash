@@ -1,4 +1,3 @@
-#include "c++/pHash/cimgffmpeg.cpp"
 #include "c++/pHash/pHash.cpp"
 
 #ifdef __cplusplus
@@ -17,11 +16,6 @@ ph_dct_imagehash_wrapper(const char *file) {
 		errno = 0;
 	}
 	return hash;
-}
-
-ulong64*
-ph_dct_videohash_wrapper(const char *filename, int *length){
-	return ph_dct_videohash(filename, *length);
 }
 
 // Magic; without it pHash fails to compute hashes for some PNG files (compiler or linker issue?)

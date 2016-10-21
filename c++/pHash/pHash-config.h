@@ -1,8 +1,8 @@
-/* configure with audio hash */
-#define HAVE_AUDIO_HASH 0
+/* configure without audio hash */
+#undef HAVE_AUDIO_HASH
 
-/* configure with video hash */
-#define HAVE_VIDEO_HASH 1
+/* configure without video hash */
+#undef HAVE_VIDEO_HASH
 
 /* configure with image hash */
 #define HAVE_IMAGE_HASH 1
