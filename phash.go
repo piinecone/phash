@@ -16,7 +16,6 @@ package phash
 
 /*
 #cgo CXXFLAGS: -O2 -Ic++/CImg -Ic++/pHash
-#cgo LDFLAGS: -lavcodec -lavutil -lavformat -lswscale
 
 #include <stdlib.h>
 
